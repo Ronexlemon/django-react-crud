@@ -34,6 +34,7 @@ const Display =()=>{
           console.error("yoolw");
         }
       };
+      
       useEffect(()=>{
         fetchTodos();
       })
