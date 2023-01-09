@@ -4,7 +4,7 @@ import TopBar from "./topbar";
 const Display =()=>{
     const navigate = useNavigate();
     return(
-<div className="bg-black h-full w-full">
+<div className="bg-black max-h-full w-full">
     <TopBar/>
 
 
