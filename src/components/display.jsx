@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import TopBar from "./topbar";
+import axios from "axios";
 const Display =()=>{
     const navigate = useNavigate();
+    const [todoList, setTodoList] = useState([]);
+   
+    
     const Items=[
         {
             id: 1,
@@ -19,6 +24,20 @@ const Display =()=>{
 
 
     ]
+    
+    const fetchTodos = async () => {
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/api/todos/');
+          setTodoList(response.data);
+        } catch (error) {
+          console.error(error);
+          console.error("yoolw");
+        }
+      };
+      useEffect(()=>{
+        fetchTodos();
+      })
+    
     return(
 <div className="h-screen w-full  bg-black">
     <TopBar/>
@@ -28,7 +47,7 @@ const Display =()=>{
     
     
     
-        {Items.map((item)=>(
+        {todoList.map((item)=>(
             
                 <div className="text-white h-36 rounded-2xl bg-blue-200    " key={item.id}>
             
